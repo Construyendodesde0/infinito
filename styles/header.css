@@ -1,0 +1,119 @@
+/* Estructura general del header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(to bottom, #FFFFFF, #F8F8F8);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Logo - Tamaño controlado */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 60px; 
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.logo-container h1 {
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+
+.infinity-icon {
+  color: #FED428;
+  font-size: 1.8rem;
+}
+
+/* Menú principal */
+.navbar ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Elementos de la derecha */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cart-icon {
+  background: #FED428;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Botón hamburguesa (oculto en desktop) */
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .logo-container {
+    width: auto; /* Ancho automático en móvil */
+    order: 1;
+  }
+
+  .header-right {
+    order: 2;
+    margin-left: auto;
+  }
+
+  .navbar {
+    order: 3;
+    width: 100%;
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .navbar.active {
+    display: block;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .navbar li {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  .hamburger-btn {
+    display: block;
+  }
+
+  .cart-icon {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}

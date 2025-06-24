@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+.featured-carousel {
+  background: linear-gradient(to bottom, #FFFFFF, #F5F5F5);
+  padding: 2rem 0;
+  overflow: hidden;
+}
+
+.carousel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.carousel-slide {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-slide::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.slide-item {
+  min-width: 85%;
+  scroll-snap-align: start;
+  height: 350px;
+  border-radius: 16px;
+  padding: 2rem;
+  color: white;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.slide-item h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.slide-item button {
+  background: white;
+  color: #333;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 24px;
+  font-weight: 600;
+  width: fit-content;
+  margin-top: 1rem;
+}
+
+/* Degradados para 8 productos (tonos grises y amarillo) */
+.slide-item:nth-child(1) { background: linear-gradient(135deg, #F5F5F5, #E0E0E0); color: #333; }
+.slide-item:nth-child(2) { background: linear-gradient(135deg, #EEEEEE, #BDBDBD); color: #333; }
+.slide-item:nth-child(3) { background: linear-gradient(135deg, #E0E0E0, #9E9E9E); color: white; }
+.slide-item:nth-child(4) { background: linear-gradient(135deg, #BDBDBD, #757575); color: white; }
+.slide-item:nth-child(5) { background: linear-gradient(135deg, #9E9E9E, #616161); color: white; }
+.slide-item:nth-child(6) { background: linear-gradient(135deg, #757575, #424242); color: white; }
+.slide-item:nth-child(7) { background: linear-gradient(135deg, #616161, #212121); color: white; }
+.slide-item:nth-child(8) { background: linear-gradient(135deg, #424242, #FED428); color: #333; }
+
+/* Ajustes visuales */
+.slide-item h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+.slide-item p { font-size: 1.2rem; margin-bottom: 1rem; }
+.slide-item button { 
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 24px;
+  font-weight: 600;
+}
