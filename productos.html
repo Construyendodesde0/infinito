@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinito - Productos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/products.css">
+</head>
+<body>
+    <header>
+  <div class="logo-container">
+    <img src="assets/imagenes/logoinfinito.png" alt="Infinito" class="logo-img">
+    <span class="logo-text">INFINITO</span>
+  </div>
+
+  <nav class="desktop-menu">
+    <a href="index.html">Inicio</a>
+    <a href="productos.html">Productos</a>
+    <a href="#">Nosotros</a>
+    <a href="#">Contacto</a>
+  </nav>
+
+  <div class="header-actions">
+    <a href="login.html" class="login-btn">Login</a>
+    <div class="cart-icon">🛒 <span id="cart-count">0</span></div>
+    <button class="hamburger-btn">☰</button>
+  </div>
+</header>
+
+  <main class="products-main">
+    <div class="category-tabs">
+      <button class="tab active" data-category="bazar">Bazar</button>
+      <button class="tab" data-category="plasticos">Plásticos</button>
+      <button class="tab" data-category="decoracion">Decoración</button>
+      <button class="tab" data-category="escolar">Escolar</button>
+      <button class="tab" data-category="regalos">Regalos</button>
+    </div>
+
+<main class="products-main">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Nuestros Productos</h1>
+        <p>Calidad y variedad para todas tus necesidades</p>
+      </div>
+      <div class="hero-overlay"></div>
+    </section>
+
+    <div class="category-container">
+      <div class="category-tabs">
+        <!-- Pestañas de categorías -->
+      </div>
+      
+      <div class="category-content">
+        <div class="products-grid" id="bazar-container">
+          <!-- Productos de bazar -->
+        </div>
+        
+        <!-- Otras categorías -->
+      </div>
+    </div>
+  </main>
+
+    <div class="products-grid" id="products-container">
+      <!-- Productos se cargarán por JavaScript -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="infinity-icon">∞</span>
+        <h3>INFINITO</h3>
+      </div>
+      <div class="footer-legal">
+        <p>&copy; 2025 Infinito. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/products.js"></script>
+</body>
+</html>

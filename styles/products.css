@@ -1,0 +1,28 @@
+.category-tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 1rem;
+  background: linear-gradient(135deg, #FFF5D9, #FFE8A3);
+}
+
+.tab {
+  background: rgba(255,255,255,0.7);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tab.active {
+  background: linear-gradient(to right, #FED428, #FFB700);
+  color: white;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
