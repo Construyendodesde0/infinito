@@ -7,51 +7,24 @@
   font-family: 'Hind', sans-serif;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background-color: #FFFFFF;
   color: #333333;
 }
 
-
-/* Productos */
-.products {
-  padding: 2rem;
-  background-color: #F5F5F5;
-  min-height: 80vh;
+main {
+  flex: 1 0 auto; 
 }
 
-.product-card {
-  background: #FFFFFF;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-}
-
-.product-card img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.product-card button {
-  background-color: #FED428;
-  color: #333333;
-  border: none;
-  padding: 0.75rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s;
-}
-
-.product-card button:hover {
-  background-color: #FFDE59;
+footer {
+  flex-shrink: 0;
 }
 
 /* Footer */

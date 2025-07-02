@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .login-container {
   background: linear-gradient(135deg, #FFF9E6, #FFEDB3);
   min-height: 100vh;
