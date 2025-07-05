@@ -1,17 +1,6 @@
 // Datos de ejemplo (luego vendrán de una base de datos)
 const products = [
-  {
-    id: 1,
-    name: "Zapatillas Deportivas",
-    price: 15000,
-    image: "assets/images/product1.jpg"
-  },
-  {
-    id: 2,
-    name: "Camiseta Oversize",
-    price: 8000,
-    image: "assets/images/product2.jpg"
-  }
+
 ];
 
 let cart = [];
