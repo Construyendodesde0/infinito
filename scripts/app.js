@@ -1,13 +1,19 @@
-// Datos de ejemplo (luego vendrán de una base de datos)
+// Datos de productos para la página principal
 const products = [
-
+  // Tus productos aquí...
 ];
 
 let cart = [];
 
-// Mostrar productos en el HTML
+// Variables globales para el carrusel
+let currentSlide = 0;
+let autoSlideInterval;
+
+// Función para mostrar productos en la página principal
 function renderProducts() {
   const container = document.getElementById('products-container');
+  if (!container) return;
+  
   container.innerHTML = '';
 
   products.forEach(product => {
@@ -23,54 +29,132 @@ function renderProducts() {
   });
 }
 
-// Carrusel automático (opcional)
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide-item');
-
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % slides.length;
-  document.querySelector('.carousel-slide').scrollTo({
-    left: currentSlide * slides[0].offsetWidth,
-    behavior: 'smooth'
+// Función para configurar el carrusel
+function setupCarousel() {
+  const carouselSlide = document.querySelector('.carousel-slide');
+  const slides = document.querySelectorAll('.slide-item');
+  const prevArrow = document.querySelector('.prev-arrow');
+  const nextArrow = document.querySelector('.next-arrow');
+  
+  if (!carouselSlide || !slides.length) return;
+  
+  // Configuración inicial del carrusel
+  carouselSlide.style.overflow = 'hidden';
+  carouselSlide.style.display = 'flex';
+  carouselSlide.style.transition = 'transform 0.5s ease';
+  
+  slides.forEach(slide => {
+    slide.style.flex = '0 0 100%';
+    slide.style.minWidth = '100%';
+  });
+  
+  // Configurar flechas
+  if (prevArrow && nextArrow) {
+    prevArrow.addEventListener('click', () => {
+      currentSlide = (currentSlide > 0) ? currentSlide - 1 : slides.length - 1;
+      updateCarousel();
+      resetAutoSlide();
+    });
+    
+    nextArrow.addEventListener('click', () => {
+      currentSlide = (currentSlide < slides.length - 1) ? currentSlide + 1 : 0;
+      updateCarousel();
+      resetAutoSlide();
+    });
+  }
+  
+  // Iniciar auto-avance solo en desktop
+  if (window.innerWidth > 768) {
+    resetAutoSlide();
+  }
+  
+  // Actualizar al cambiar tamaño de pantalla
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      resetAutoSlide();
+    } else {
+      clearInterval(autoSlideInterval);
+      carouselSlide.style.transform = 'none';
+    }
   });
 }
 
-// Auto-avance cada 5 segundos
-setInterval(nextSlide, 5000);
-
-// Añadir al carrito
-function addToCart(productId) {
-  const product = products.find(p => p.id === productId);
-  cart.push(product);
-  updateCartCount();
+// Función para actualizar el carrusel
+function updateCarousel() {
+  const carouselSlide = document.querySelector('.carousel-slide');
+  const slides = document.querySelectorAll('.slide-item');
+  if (!carouselSlide || slides.length === 0) return;
+  carouselSlide.style.transform = `translateX(-${currentSlide * 100}%)`;
 }
 
-// Actualizar contador del carrito
+// Función para auto-avance
+function nextSlide() {
+  const slides = document.querySelectorAll('.slide-item');
+  if (!slides.length) return;
+  
+  currentSlide = (currentSlide < slides.length - 1) ? currentSlide + 1 : 0;
+  updateCarousel();
+}
+
+// Función para reiniciar auto-avance
+function resetAutoSlide() {
+  clearInterval(autoSlideInterval);
+  autoSlideInterval = setInterval(nextSlide, 5000);
+}
+
+// Función para agregar al carrito
+function addToCart(productId) {
+  const product = products.find(p => p.id === productId);
+  if (product) {
+    cart.push(product);
+    updateCartCount();
+  }
+}
+
+// Función para actualizar contador del carrito
 function updateCartCount() {
-  document.getElementById('cart-count').textContent = cart.length;
+  const cartCount = document.getElementById('cart-count');
+  if (cartCount) cartCount.textContent = cart.length;
+}
+
+// Menú hamburguesa
+function setupMobileMenu() {
+  const hamburgerBtn = document.querySelector('.hamburger-btn');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  
+  if (!hamburgerBtn || !mobileMenu) return;
+  
+  hamburgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+    hamburgerBtn.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+  });
+  
+  // Cerrar menú al hacer clic en enlace
+  document.querySelectorAll('.mobile-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      hamburgerBtn.textContent = '☰';
+    });
+  });
 }
 
 // Inicializar la página
 document.addEventListener('DOMContentLoaded', () => {
   renderProducts();
-});
-
-// Toggle menú hamburguesa
-const hamburgerBtn = document.querySelector('.hamburger-btn');
-const navbar = document.querySelector('.navbar');
-
-hamburgerBtn.addEventListener('click', () => {
-  navbar.classList.toggle('active');
-});
-
-// Toggle del menú
-document.querySelector('.hamburger-btn').addEventListener('click', () => {
-  document.querySelector('.mobile-menu').classList.toggle('active');
-});
-
-// Cerrar menú al hacer clic en un enlace (opcional)
-document.querySelectorAll('.navbar a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.querySelector('.navbar').classList.remove('active');
-  });
+  setupCarousel();
+  setupMobileMenu();
+  updateCartCount();
+  
+  // Configuración específica para móviles
+  if (window.innerWidth <= 768) {
+    const carouselSlide = document.querySelector('.carousel-slide');
+    if (carouselSlide) {
+      carouselSlide.style.overflowX = 'auto';
+      carouselSlide.style.scrollSnapType = 'x mandatory';
+    }
+    
+    document.querySelectorAll('.slide-item').forEach(slide => {
+      slide.style.scrollSnapAlign = 'start';
+    });
+  }
 });

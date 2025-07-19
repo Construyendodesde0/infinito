@@ -1,72 +1,112 @@
 @charset "UTF-8";
 
+/* Contenedor general del carrusel */
 .featured-carousel {
-  background: linear-gradient(to bottom, #FFFFFF, #F5F5F5);
   padding: 2rem 0;
+  background: linear-gradient(to bottom, #FFFFFF, #F5F5F5);
   overflow: hidden;
 }
 
+/* Caja principal del carrusel */
 .carousel-container {
+  position: relative;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  min-height: 350px; /* asegura altura suficiente para todas las slides */
 }
 
+/* Fila de slides: flex sin salto de línea */
 .carousel-slide {
   display: flex;
-  gap: 1rem;
-  padding: 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  flex-wrap: nowrap;
+  transition: transform 0.5s ease-in-out;
 }
 
-.carousel-slide::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
-}
-
+/* Cada slide ocupa el 100% del ancho padre */
 .slide-item {
-  min-width: 85%;
-  scroll-snap-align: start;
-  height: 350px;
-  border-radius: 16px;
+  flex: 0 0 100%;
+  box-sizing: border-box;
   padding: 2rem;
-  color: white;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start; /* para móvil */
+  background: #fff; /* fallback */
 }
 
+/* Gradientes de fondo para cada slide (opcional) */
+.slide-item:nth-child(1) { background: linear-gradient(135deg, #FED428, #FFDE59); }
+.slide-item:nth-child(2) { background: linear-gradient(135deg, #2A5CAA, #5C8AE6); }
+.slide-item:nth-child(3) { background: linear-gradient(135deg, #6B8CE6, #2A5CAA); }
+/* agrega más si tienes más slides */
+
+/* Imagen dentro del slide, contenida */
+.slide-item img {
+  max-width: 80%;
+  max-height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+/* Título y texto */
 .slide-item h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  margin: 0.5rem 0;
+  color: #333;
+}
+.slide-item p {
+  font-size: 1rem;
+  color: #fff; /* sobre fondos oscuros */
+  margin-bottom: 1rem;
 }
 
+/* Botón comprar */
 .slide-item button {
-  background: white;
+  background-color: #fff;
   color: #333;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 24px;
-  font-weight: 600;
-  width: fit-content;
-  margin-top: 1rem;
+  padding: 0.7rem 1.2rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.slide-item button:hover {
+  background-color: #e5c71f;
 }
 
-/* Degradados para 8 productos (tonos grises y amarillo) */
-.slide-item:nth-child(1) { background: linear-gradient(135deg, #F5F5F5, #E0E0E0); color: #333; }
-.slide-item:nth-child(2) { background: linear-gradient(135deg, #EEEEEE, #BDBDBD); color: #333; }
-.slide-item:nth-child(3) { background: linear-gradient(135deg, #E0E0E0, #9E9E9E); color: white; }
-.slide-item:nth-child(4) { background: linear-gradient(135deg, #BDBDBD, #757575); color: white; }
-.slide-item:nth-child(5) { background: linear-gradient(135deg, #9E9E9E, #616161); color: white; }
-.slide-item:nth-child(6) { background: linear-gradient(135deg, #757575, #424242); color: white; }
-.slide-item:nth-child(7) { background: linear-gradient(135deg, #616161, #212121); color: white; }
-.slide-item:nth-child(8) { background: linear-gradient(135deg, #424242, #FED428); color: #333; }
-
-/* Ajustes visuales */
-.slide-item h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
-.slide-item p { font-size: 1.2rem; margin-bottom: 1rem; }
-.slide-item button { 
-  background: rgba(255, 255, 255, 0.9);
+/* Flechas */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffffd9;
   border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 24px;
-  font-weight: 600;
+  font-size: 2rem;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.prev-arrow { left: 10px; }
+.next-arrow { right: 10px; }
+
+/* Ocultar scrollbar en desktop */
+.carousel-slide::-webkit-scrollbar { display: none; }
+
+/* Responsive: en móvil usamos scroll-snap y ocultamos flechas */
+@media (max-width: 768px) {
+  .carousel-slide {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .carousel-arrow {
+    display: none;
+  }
 }
