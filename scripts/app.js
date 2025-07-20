@@ -1,3 +1,5 @@
+// scripts/app.js
+
 // Datos de productos para la página principal
 const products = [
   // Tus productos aquí...
@@ -38,7 +40,6 @@ function setupCarousel() {
   
   if (!carouselSlide || !slides.length) return;
   
-  // Configuración inicial del carrusel
   carouselSlide.style.overflow = 'hidden';
   carouselSlide.style.display = 'flex';
   carouselSlide.style.transition = 'transform 0.5s ease';
@@ -48,7 +49,6 @@ function setupCarousel() {
     slide.style.minWidth = '100%';
   });
   
-  // Configurar flechas
   if (prevArrow && nextArrow) {
     prevArrow.addEventListener('click', () => {
       currentSlide = (currentSlide > 0) ? currentSlide - 1 : slides.length - 1;
@@ -63,12 +63,10 @@ function setupCarousel() {
     });
   }
   
-  // Iniciar auto-avance solo en desktop
   if (window.innerWidth > 768) {
     resetAutoSlide();
   }
   
-  // Actualizar al cambiar tamaño de pantalla
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
       resetAutoSlide();
@@ -82,8 +80,8 @@ function setupCarousel() {
 // Función para actualizar el carrusel
 function updateCarousel() {
   const carouselSlide = document.querySelector('.carousel-slide');
-  const slides = document.querySelectorAll('.slide-item');
-  if (!carouselSlide || slides.length === 0) return;
+  if (!carouselSlide) return;
+  
   carouselSlide.style.transform = `translateX(-${currentSlide * 100}%)`;
 }
 
@@ -129,12 +127,18 @@ function setupMobileMenu() {
     hamburgerBtn.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
   });
   
-  // Cerrar menú al hacer clic en enlace
-  document.querySelectorAll('.mobile-nav a').forEach(link => {
+  mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
       hamburgerBtn.textContent = '☰';
     });
+  });
+  
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      mobileMenu.classList.remove('active');
+      hamburgerBtn.textContent = '☰';
+    }
   });
 }
 
@@ -145,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMobileMenu();
   updateCartCount();
   
-  // Configuración específica para móviles
   if (window.innerWidth <= 768) {
     const carouselSlide = document.querySelector('.carousel-slide');
     if (carouselSlide) {
