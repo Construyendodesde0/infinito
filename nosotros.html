@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nosotros | Infinito</title>
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="nosotros.css">
+  <link rel="shortcut icon" href="assets/imagenes/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/nosotros.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">Infinito</div>
+    <nav class="desktop-menu">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a class="active" href="nosotros.html">Nosotros</a></li>
+        <li class="contact-dropdown">
+  <button id="contact-toggle">Contacto</button>
+  <div class="contact-panel">
+    <!-- Bloque Instagram -->
+    <div class="qr-block">
+      <img src="assets/imagenes/qrinsta.png" alt="Instagram QR">
+      <div class="contact-label">
+        <i class="fab fa-instagram icon"></i>
+        <a href="https://www.instagram.com/infinito.mc/" target="_blank">Abrir Instagram</a>
+      </div>
+    </div>
+    
+    <!-- Bloque WhatsApp -->
+    <div class="qr-block">
+      <img src="assets/imagenes/qrwp.png" alt="WhatsApp QR">
+      <div class="contact-label">
+        <i class="fab fa-whatsapp icon"></i>
+        <a href="https://wa.me/5493518048675" target="_blank">Enviar WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</li>
+    </nav>
+
+    <!-- Menú móvil -->
+    <div class="header-actions">
+      <a href="login.html" class="login-btn">Login</a>
+      <div class="cart-icon">🛒 <span id="cart-count">0</span></div>
+      <button class="hamburger-btn">☰</button>
+    </div>
+
+    <nav class="mobile-menu">
+      <a href="index.html">Inicio</a>
+      <a href="productos.html">Productos</a>
+      <a href="nosotros.html" target="_blank">Nosotros</a>
+      <li class="contact-dropdown">
+  <button id="contact-toggle">Contacto</button>
+  <div class="contact-panel">
+    <!-- Bloque Instagram -->
+    <div class="qr-block">
+      <img src="assets/imagenes/qrinsta.png" alt="Instagram QR">
+      <div class="contact-label">
+        <i class="fab fa-instagram icon"></i>
+        <a href="https://www.instagram.com/infinito.mc/" target="_blank">Abrir Instagram</a>
+      </div>
+    </div>
+    
+    <!-- Bloque WhatsApp -->
+    <div class="qr-block">
+      <img src="assets/imagenes/qrwp.png" alt="WhatsApp QR">
+      <div class="contact-label">
+        <i class="fab fa-whatsapp icon"></i>
+        <a href="https://wa.me/5493518048675" target="_blank">Enviar WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</li>
+      <a href="login.html" class="login-btn">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="about-section">
+      <h1>Sobre Nosotros</h1>
+      <div class="about-content">
+        <img src="assets/imagenes/local.jpg" alt="Foto del Local" class="about-photo">
+        <div class="about-text">
+          <p><strong>Infinito</strong> es una tienda familiar nacida en <strong>Monte Cristo, Córdoba</strong>, en el año <strong>2020</strong>. Fundada y gestionada por <strong>Gastón González</strong>, surge como una apuesta por el crecimiento y el trabajo propio dentro de una familia con espíritu emprendedor.</p>
+          <p>Con el objetivo de ofrecer productos de calidad en bazar, decoración, escolares, plásticos y regalos, buscamos brindar un servicio cálido, cercano y profesional, tanto en nuestro local físico como en el canal online.</p>
+          <p>Soñamos con hacer crecer este emprendimiento y que cada cliente nos elija por la confianza y la atención que damos. <strong>Gracias por ser parte de este camino.</strong></p>
+        </div>
+        <img src="assets/imagenes/dueno.jpg" alt="Dueño del Local" class="about-photo">
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Cerrar menú móvil al hacer resize a escritorio
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        mobileMenu.classList.remove('active');
+      }
+    });
+  </script>
+ <script src="scripts/app.js"></script>
+</body>
+</html>

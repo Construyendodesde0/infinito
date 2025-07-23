@@ -125,6 +125,7 @@ main {
   background: linear-gradient(135deg, #FFF5D9, #FFE8A3);
   padding: 1.5rem;
   border-bottom: 1px solid #e0e0e0;
+  margin-top: -65px;
 }
 
 .category-tabs {
