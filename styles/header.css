@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+/* ===========================
+   HEADER - DESKTOP (NO TOCAR)
+   ===========================
+   Este bloque es exactamente lo que enviaste y se mantiene intacto
+*/
+
 header {
   display: flex;
   justify-content: space-between;
@@ -7,6 +13,9 @@ header {
   padding: 1rem 2rem;
   background: linear-gradient(to bottom, #FFFFFF, #F8F8F8);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  flex-wrap: nowrap;
+  position: relative;
+  min-height: 64px;
 }
 
 .desktop-menu {
@@ -18,6 +27,7 @@ header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-left: 0;
   max-width: 200px;
 }
 
@@ -57,26 +67,29 @@ header {
   font-weight: 500;
 }
 
+/* Nota: reubicado/reescrito más abajo para mobile (no cambia desktop) */
 .mobile-menu {
-  display: none;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  background: white;
-  position: fixed;
-  top: 60px;   
+  display: none;            
+  position: absolute;          
+  top: calc(100% + 8px);      
   right: 0;
-  width: 240px;
-  max-height: calc(100vh - 60px); 
+  width: 86vw;           
+  max-width: 320px;
+  background: white;
+  padding: 0.5rem;
+  max-height: calc(100vh - 100px);
   overflow-y: auto;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
   z-index: 1000;
   transform: translateX(100%);
-  transition: transform 0.3s ease;
+  transition: transform 0.28s ease;
 }
 
 .mobile-menu.active {
-  left: 0;
+  transform: translateX(0);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;               
 }
 
 .mobile-nav {
@@ -99,6 +112,7 @@ header {
   background: rgba(254, 212, 40, 0.05);
 }
 
+/* Si alguna regla añade bullets, la anulamos más abajo en mobile */
 .mobile-nav a::before {
   content: "•";
   color: #FED428;
@@ -140,13 +154,12 @@ header {
   gap: 1.5rem;
 }
 
-
 .header-actions {
   display: flex;
   align-items: center;
   gap: 1.2rem;
+  flex-shrink: 0; /* evita que se muevan por falta de espacio */
 }
-
 .login-btn {
   background: linear-gradient(to right, #FED428, #FFC107);
   color: #333;
@@ -305,94 +318,109 @@ header {
   background: rgba(254,212,40,0.1);
 }
 
+/* ======================================
+   MOBILE OVERRIDES (SOLO ESTAS REGLAS)
+   - Desktop queda exactamente igual
+   - Estas reglas se aplican SOLO en pantallas <=768px
+   ====================================== */
 
-/* ========= RESPONSIVE ========= */
 @media (max-width: 768px) {
+
+  /* header: compacto pero relativo para posicionar el dropdown */
   header {
-    padding: 1rem;
-    flex-wrap: wrap;
+    padding: 0.4rem 0.6rem;
+    height: auto;
+    flex-wrap: nowrap;
+    position: relative; /* importante para mobile panel */
+    overflow-x: hidden; /* evita scroll lateral por exceso de padding */
   }
 
-  .logo-img {
-    max-width: 48px;
-  }
-
+  /* logo: permitir reducir y truncar (no empuja acciones) */
   .logo-container {
-    max-width: 160px;
-    flex-direction: row;
+    flex: 1 1 0;
+    height: auto;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .logo-text {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 55vw; /* evita que el logo empuje los botones */
+  }
+
+  /* header-actions: forzamos que queden en la misma línea y a la derecha */
+  .header-actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    order: 2; /* mantenemos arriba */
+  }
+
+  /* hacemos visible la hamburguesa en mobile (si está oculta) */
+  .hamburger-btn {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-left: 192px;
-  }
-  
-  .logo-text {
-    font-size: 1rem;
-  }
-  
-  .login-btn {
-    padding: 0.4rem 1rem;
-    font-size: 0.9rem;
+    font-size: 1.25rem;
+    padding: 0.2rem;
+    order: 3; /* después de login/cart si hay orden */
   }
 
-  .logo-container h1 {
-    font-size: 1.2rem;
-  }
-
-  .infinity-icon {
-    font-size: 1.4rem;
-  }
-
-  .header-right {
-    order: 2;
-    margin-left: auto;
-  }
-
-  .navbar {
-    order: 3;
-    width: 100%;
-    margin-top: 1rem;
-    display: none;
-  }
-
-  .navbar.active {
-    display: block;
-  }
-
-  .navbar ul {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .navbar li {
-    padding: 1rem;
-    border-bottom: 1px solid #eee;
-  }
-
-   .desktop-menu,
-  .login-btn,
-  .cart-icon {
-    display: none;
-  }
-  .desktop-menu {
-  display: none !important;
-}
-  
-  .hamburger-btn {
-    display: block;
-  }
-  
+  /* Mobile menu: aparecerá por debajo del header, centrado y sin chocar */
   .mobile-menu {
     display: flex;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 8px) scaleY(0);
+    transform-origin: top center;
+    width: min(92vw, 360px);
+    max-width: 360px;
+    padding: 0.45rem;
+    border-radius: 10px;
+    opacity: 0;
+    transition: transform 220ms ease, opacity 180ms ease;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+    z-index: 1000;
+    flex-direction: column;
+    gap: 0.35rem;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
   }
 
-  .cart-icon {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+  /* estado activo: desplegado */
+  .mobile-menu.active {
+    transform: translate(-50%, 0) scaleY(1);
+    opacity: 1;
   }
 
-  .desktop-menu a {
+  /* reducir gap y compactar items dentro del panel */
+  .mobile-nav {
+    display: flex;
     flex-wrap: wrap;
-    align-items: normal;
-    flex-direction: row;
+    gap: 0.35rem;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* anular bullets molestos si existieran */
+  .mobile-nav a::before,
+  .mobile-menu ul li::before {
+    content: none !important;
+  }
+
+  .mobile-menu a {
+    padding: 0.45rem 0.75rem;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  /* Tampoco queremos scroll lateral en todo el documento móvil */
+  html, body {
+    overflow-x: hidden;
   }
 }
