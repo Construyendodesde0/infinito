@@ -1,6 +1,5 @@
-/* ====== nosotros.css ====== */
+@charset "UTF-8";
 
-/* Fuente global */
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap');
 body {
   font-family: 'Hind', sans-serif;
@@ -10,7 +9,6 @@ body {
   color: #333;
 }
 
-/* HEADER con degradado y blur */
 header {
   position: relative;
   padding: 1rem 2rem;
@@ -44,11 +42,6 @@ header nav.desktop-menu a:hover {
   background: rgba(255,255,255,0.6);
 }
 
-/* HAMBURGUESA y menú móvil (heredado de tu header.css) */
-.hamburger-btn { /* si usas .hamburger-btn */ }
-.mobile-menu { /* ... */ }
-
-/* Main “Sobre Nosotros” */
 .about-section {
   max-width: 1200px;
   margin: 3rem auto;
@@ -63,7 +56,6 @@ header nav.desktop-menu a:hover {
   color: #222;
 }
 
-/* Contenido con imágenes a los lados y texto en el centro */
 .about-content {
   display: flex;
   flex-direction: column;
@@ -71,7 +63,6 @@ header nav.desktop-menu a:hover {
   gap: 2rem;
 }
 
-/* Foto del local y dueño */
 .about-photo {
   width: 100%;
   max-width: 350px;
@@ -80,7 +71,6 @@ header nav.desktop-menu a:hover {
   object-fit: cover;
 }
 
-/* Texto intermedio */
 .about-text {
   max-width: 600px;
   font-size: 1.1rem;
@@ -88,7 +78,6 @@ header nav.desktop-menu a:hover {
   color: #444;
 }
 
-/* Responsive: en pantallas anchas, imagen - texto - imagen */
 @media (min-width: 768px) {
   .about-content {
     flex-direction: row;
@@ -98,7 +87,6 @@ header nav.desktop-menu a:hover {
   }
 }
 
-/* Fondo difuminado detrás de la sección (opcional) */
 .about-section::before {
   content: '';
   position: absolute;
@@ -111,7 +99,6 @@ header nav.desktop-menu a:hover {
   z-index: -1;
 }
 
-/* Ajustes finales */
 footer {
   margin-top: 3rem;
 }
